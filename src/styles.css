@@ -237,4 +237,5 @@ body.dark-theme {
 
 .menu-container > .tag-list {
   display: block;
+  margin-right: 20px;
 }
