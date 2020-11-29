@@ -64,12 +64,7 @@ function setMenuByFilter(filterMenu) {
   if (filterMenu === ALL_INGRADIENTS) {
     currentMenu = itemMenu.slice();
   } else {
-    currentMenu = itemMenu.filter(el => {
-      if (el.ingredients.includes(filterMenu)) {
-        return true;
-      }
-      return false;
-    });
+    currentMenu = itemMenu.filter(el => el.ingredients.includes(filterMenu));
   }
 
   const menu = menuTemplates(currentMenu);
