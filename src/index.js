@@ -64,7 +64,9 @@ function setMenuByFilter(filterMenu) {
   if (filterMenu === ALL_INGRADIENTS) {
     currentMenu = itemMenu.slice();
   } else {
-    currentMenu = itemMenu.filter(el => el.ingredients.includes(filterMenu));
+    currentMenu = itemMenu.filter(el =>
+      el.ingredients.includes(filterMenu.trim()),
+    );
   }
 
   const menu = menuTemplates(currentMenu);
@@ -75,17 +77,14 @@ function setMenuByFilter(filterMenu) {
 }
 
 function setFilterMenu(currentMenu) {
-  const ingradients = currentMenu
+  const ingrad = currentMenu
     .reduce((newArray, { ingredients }) => {
       const newIngradient = ingredients.filter(el => !newArray.includes(el));
       return [...newArray, ...newIngradient];
     }, [])
     .sort();
 
-  const ingradientsFilter = ingradientTemplates([
-    ALL_INGRADIENTS,
-    ...ingradients,
-  ]);
+  const ingradientsFilter = ingradientTemplates([ALL_INGRADIENTS, ...ingrad]);
   refs.listIngradienst.innerHTML = '';
   refs.listIngradienst.insertAdjacentHTML('beforeend', ingradientsFilter);
 }
